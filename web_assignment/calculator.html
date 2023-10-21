@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <style>
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+        }
+
+        input[type="text"], input[type="button"] {
+            width: 65px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            margin-bottom: 10px;
+            grid-column: span 3;
+        }
+
+        /* Style all buttons in black */
+        input[type="button"] {
+            background-color: black;
+            color: white;
+            grid-column: span 1;
+        }
+
+        /* Style the "÷" (divide) button in its respective color */
+        input[type="button"][value="÷"] {
+            background-color: orange;
+        }
+
+        /* Style the operator buttons in their respective colors */
+        input[type="button"][value="+"],
+        input[type="button"][value="-"],
+        input[type="button"][value="*"] {
+            background-color: gray;
+        }
+
+        /* Shift the "multiply" button to the position of the "equals" button and place the "equals" button where "divide" was */
+        input[type="button"][value="*"] {
+            grid-row: 4;
+            grid-column: 4;
+        }
+
+        input[type="button"][value="÷"] {
+            grid-row: 5;
+            grid-column: 4;
+            background-color: gray
+            
+        }
+
+        /* Style the "AC" button in green */
+        input[type="button"][value="AC"] {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <input type="button" value="AC" onclick="clearDisplay()">
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="+" onclick="addToDisplay('+')">
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="addToDisplay('6')">
+        <input type="button" value="-" onclick="addToDisplay('-')">
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="=" onclick="calculate()">
+        <input type="button" value="." onclick="addToDisplay('.')">
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="÷" onclick="addToDisplay('/')">
+        <input type="button" value="*" onclick="addToDisplay('*')">
+    </div>
+
+    <script>
+        function addToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            var expression = document.getElementById('display').value;
+            try {
+                var result = eval(expression);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
